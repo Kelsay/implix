@@ -1,6 +1,12 @@
 ﻿import React from 'react';
+
+// Models
+import RegistrationDataModel from './RegistrationDataModel.jsx';
+
+// Validations
 import ValidationRunner from '../Validation/ValidationRunner.jsx';
 import NotEmptyValidator from '../Validation/NotEmptyValidator.jsx';
+import EmailValidator from '../Validation/EmailValidator.jsx';
 
 export default class RegistrationForm extends React.Component {
 
@@ -17,8 +23,9 @@ export default class RegistrationForm extends React.Component {
      */
     setupValidationRules() {
         this.rules = [
-            ['email', new NotEmptyValidator()],
-            ['firstName', new NotEmptyValidator()]
+            ['email', 'E-mail', new NotEmptyValidator(), new EmailValidator()],
+            ['firstName', 'First name', new NotEmptyValidator()],
+            ['lastName', 'Last name', new NotEmptyValidator()]
         ];
     }
 
@@ -26,35 +33,34 @@ export default class RegistrationForm extends React.Component {
      * Set default state
      */
     setupState() {
-        this.state = {
-            firstName: "",
-            email: ""
-        };
+        this.state = RegistrationDataModel;
     }
 
     render() {
+        let state = this.state;
         return (
             <div className="registrationForm">
+
+                <h2>Weekend promotion</h2>
+                <h3>Promotion ends: 20.03.2014, 12:00PM</h3>
                 <form>
                     <input type="radio" name="1_ticket"/> 1 TICKET €109
                     <input type="radio" name="5_tickets"/> 5 TICKETS €495
 
-                    <input type="text" value={this.state.firstName} name="firstName" onChange={this.handleChange}/>
-                    <input type="text" value="first_name" name="last_name"/>
+                    <input name="firstName" type="text" value={state.firstName} onChange={this.handleChange}/>
+                    <input name="lastName" type="text" value={state.lastName} onChange={this.handleChange}/>
 
-                    <textarea name="textarea_1"></textarea>
-                    <textarea name="textarea_2">2</textarea>
+                    <textarea name="textarea1" value={state.textarea1} onChange={this.handleChange}></textarea>
+                    <textarea name="textarea2" value={state.textarea2} onChange={this.handleChange}></textarea>
 
-                    <input type="text" name="email" value={this.state.email} onChange={this.handleChange}/>
-                    <input type="password" name="password" value="password"/>
+                    <input name="email" type="text" value={state.email} onChange={this.handleChange}/>
+                    <input name="password" type="password" value={state.password} onChange={this.handleChange}/>
 
-                    <input type="text" name="vid_number" value="vid_number"/>
-                    <input type="text" name="tickets_count" value="tickets_count"/>
+                    <input name="vidNumber" type="text" value={state.vidNumber}/>
+                    <input name="ticketCount" type="text" value={state.ticketCount}/>
 
                     <button onClick={this.handleSubmit}>Register</button>
                 </form>
-
-
             </div>
         );
     }
@@ -72,7 +78,7 @@ export default class RegistrationForm extends React.Component {
     }
 
     /**
-     *
+     * Assign the
      */
     handleChange({target}) {
         this.setState({

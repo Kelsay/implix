@@ -10,7 +10,7 @@ export default class NotEmptyValidator extends Validator {
 
     validate(value) {
         console.log("Validating", value);
-        return (value !== null && value !== "") ? null : this.getErrorMessage();
+        return (value !== null && value !== "");
     }
 
 }
