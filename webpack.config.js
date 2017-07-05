@@ -16,9 +16,10 @@ module.exports = {
         }])
     ],
     module: {
-        loaders: [
-          { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-          { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+        rules: [
+            { test: /\.jsx$/, exclude: /node_modules/, loader: "eslint-loader", enforce: "pre" },
+            { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+            { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
         ]
     },
     devServer: {
