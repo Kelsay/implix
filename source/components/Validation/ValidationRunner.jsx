@@ -4,21 +4,30 @@
 
 export default class ValidationRunner {
 
-    constructor(rules) {
+    constructor(rules, state) {
         this.rules = rules;
+        this.state = state;
     }
 
+    /**
+     * Execute all the validation rules
+     * @returns {Array} Array of error messages
+     */
     execute() {
-        console.log('Validators', this.rules);
-        let error = false,
-            messages = [];
+        let results = [];
         for (let rule of this.rules) {
-            let value, validators;
-            [value, ...validators] = rule;
-            console.log(value, validators);
+
+            // Destructure the rules
+            let field, value, validators;
+            [field, ...validators] = rule;
+            value = this.state[field];
+
+            for (let validator of validators) {
+                results.push(validator.validate(value));
+            }
         }
 
-        return { error, messages };
+        return results;
     }
 
 }

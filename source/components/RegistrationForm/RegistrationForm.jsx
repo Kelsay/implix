@@ -1,11 +1,35 @@
 ﻿import React from 'react';
-import NotEmptyValidator from '../Validators/NotEmptyValidator.jsx';
+import ValidationRunner from '../Validation/ValidationRunner.jsx';
+import NotEmptyValidator from '../Validation/NotEmptyValidator.jsx';
 
 export default class RegistrationForm extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.setupState();
         this.setupValidationRules();
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    /**
+     * Assign validation rules to the field values
+     */
+    setupValidationRules() {
+        this.rules = [
+            ['email', new NotEmptyValidator()],
+            ['firstName', new NotEmptyValidator()]
+        ];
+    }
+
+    /**
+     * Set default state
+     */
+    setupState() {
+        this.state = {
+            firstName: "",
+            email: ""
+        };
     }
 
     render() {
@@ -15,19 +39,19 @@ export default class RegistrationForm extends React.Component {
                     <input type="radio" name="1_ticket"/> 1 TICKET €109
                     <input type="radio" name="5_tickets"/> 5 TICKETS €495
 
-                    <input type="text" value="first_name" name="first_name"/>
+                    <input type="text" value={this.state.firstName} name="firstName" onChange={this.handleChange}/>
                     <input type="text" value="first_name" name="last_name"/>
 
                     <textarea name="textarea_1"></textarea>
                     <textarea name="textarea_2">2</textarea>
 
-                    <input type="text" name="email" value="email"/>
+                    <input type="text" name="email" value={this.state.email} onChange={this.handleChange}/>
                     <input type="password" name="password" value="password"/>
 
                     <input type="text" name="vid_number" value="vid_number"/>
                     <input type="text" name="tickets_count" value="tickets_count"/>
 
-                    <button onClick={this.onSubmit} value="Register" />
+                    <button onClick={this.handleSubmit}>Register</button>
                 </form>
 
 
@@ -36,16 +60,24 @@ export default class RegistrationForm extends React.Component {
     }
 
     /**
-     * Assign validation rules to the field values
+     * Form submit handler
+     * Run validations and display errors
      */
-    setupValidationRules() {
-        let validators = [
-            ['email', NotEmptyValidator]
-        ];
+    handleSubmit(event) {
+        event.preventDefault();
+        let runner, result;
+        runner = new ValidationRunner(this.rules, this.state);
+        result = runner.execute();
+        console.log(result);
     }
 
-    onSubmit() {
-        console.log('On submit');
+    /**
+     *
+     */
+    handleChange({target}) {
+        this.setState({
+            [target.name]: target.value
+        });
     }
 
 }

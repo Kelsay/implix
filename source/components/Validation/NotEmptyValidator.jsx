@@ -9,8 +9,8 @@ export default class NotEmptyValidator extends Validator {
     }
 
     validate(value) {
-        console.log(this.name, value);
-        return (value !== null && value !== "");
+        console.log("Validating", value);
+        return (value !== null && value !== "") ? null : this.getErrorMessage();
     }
 
 }
