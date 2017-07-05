@@ -23,6 +23,10 @@ module.exports = {
         ]
     },
     devServer: {
-        contentBase: './dist'
+        contentBase: './dist',
+        watchOptions: {
+            aggregateTimeout: 300,
+            poll: 1000
+        }
     }
 };
