@@ -32,7 +32,7 @@ export default class RegistrationForm extends React.Component {
 
 
             </div>
-        )
+        );
     }
 
     /**
@@ -41,7 +41,7 @@ export default class RegistrationForm extends React.Component {
     setupValidationRules() {
         let validators = [
             ['email', NotEmptyValidator]
-        ]
+        ];
     }
 
     onSubmit() {
@@ -49,4 +49,3 @@ export default class RegistrationForm extends React.Component {
     }
 
 }
-

@@ -9,9 +9,9 @@ import RegistrationForm from "./RegistrationForm/RegistrationForm.jsx";
 export default class App extends React.Component {
 
     render() {
-        return(
+        return (
             <RegistrationForm/>
-        )
+        );
     }
 
 }

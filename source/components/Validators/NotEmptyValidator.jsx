@@ -1,5 +1,5 @@
 import Validator from './Validator.jsx';
-import ErrorMessages from '../../resources/strings/ErrorMessages.js';
+import ErrorMessages from '../../resources/strings/ErrorMessages.jsx';
 
 
 export default class NotEmptyValidator extends Validator {
