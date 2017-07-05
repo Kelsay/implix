@@ -1,8 +1,5 @@
 export default class Validator {
 
-    name = "Validator";
-    errorMessage = "Validation error";
-
     constructor(name) {
         this.name = name;
     }

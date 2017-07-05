@@ -1,14 +1,15 @@
-import Validator from './Validator';
+import Validator from './Validator.jsx';
+import ErrorMessages from '../../resources/strings/ErrorMessages.js';
 
 
 export default class NotEmptyValidator extends Validator {
 
     getErrorMessage() {
-        return "This field cannot be empty."
+        return ErrorMessages.empty;
     }
 
     validate(value) {
-        console.log(value);
+        console.log(this.name, value);
         return true;
     }
 

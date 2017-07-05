@@ -3,8 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Import custom modules
-import RegistrationForm from "./components/RegistrationForm.jsx";
+import App from "./components/App.jsx";
 
 // Mount React component
-var mountingPoint = document.getElementById("registrationForm");
-ReactDOM.render(<RegistrationForm />, mountingPoint);
+var mountingPoint = document.getElementById("app");
+ReactDOM.render(<App />, mountingPoint);
