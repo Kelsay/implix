@@ -15,6 +15,12 @@ module.exports = {
             to: __dirname + '/dist/index.html'
         }])
     ],
+    module: {
+        loaders: [
+          { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+          { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+        ]
+    },
     devServer: {
         contentBase: './dist'
     }
