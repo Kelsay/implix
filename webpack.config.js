@@ -17,9 +17,10 @@ module.exports = {
     ],
     module: {
         rules: [
-            { test: /\.jsx$/, exclude: /node_modules/, loader: "eslint-loader", enforce: "pre" },
-            { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-            { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+            {test: /\.jsx$/, exclude: /node_modules/, loader: "eslint-loader", enforce: "pre"},
+            {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
+            {test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/},
+            {test: /\.scss$/, loaders: ['style-loader', 'css-loader', 'sass-loader']}
         ]
     },
     devServer: {
