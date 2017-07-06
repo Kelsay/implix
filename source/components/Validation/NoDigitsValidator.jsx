@@ -8,7 +8,9 @@ export default class NoDigitsValidator extends Validator {
 
     validate(value) {
         let regex = /^([^0-9]*)$/;
-        return !regex.test(value);
+        return (value === null) ?
+            false :
+            regex.test(value);
     }
 
 }
