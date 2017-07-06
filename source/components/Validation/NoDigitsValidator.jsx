@@ -1,6 +1,6 @@
 import Validator from './Validator.jsx';
 
-export default class NoNumbersValidator extends Validator {
+export default class NoDigitsValidator extends Validator {
 
     getErrorMessage() {
         return  `${this.label} cannot contain numbers [0-9]`;
