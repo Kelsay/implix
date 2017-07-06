@@ -7,6 +7,8 @@ import RegistrationDataModel from './RegistrationDataModel.jsx';
 import ValidationRunner from '../Validation/ValidationRunner.jsx';
 import NotEmptyValidator from '../Validation/NotEmptyValidator.jsx';
 import EmailValidator from '../Validation/EmailValidator.jsx';
+import StringLengthValidator from '../Validation/StringLengthValidator.jsx';
+import NoNumbersValidator from '../Validation/NoNumbersValidator.jsx';
 
 export default class RegistrationForm extends React.Component {
 
@@ -24,8 +26,12 @@ export default class RegistrationForm extends React.Component {
     setupValidationRules() {
         this.rules = [
             ['email', 'E-mail', new NotEmptyValidator(), new EmailValidator()],
-            ['firstName', 'First name', new NotEmptyValidator()],
-            ['lastName', 'Last name', new NotEmptyValidator()]
+            ['firstName', 'First name', new NotEmptyValidator(), new NoNumbersValidator()],
+            ['lastName', 'Last name', new NotEmptyValidator(), new NoNumbersValidator()],
+            ['textarea1', 'Textarea 1', new NotEmptyValidator(), new StringLengthValidator({min: 1, max: 10})],
+            ['textarea2', 'Textarea 2', new NotEmptyValidator(), new StringLengthValidator({min: 1, max: 20})],
+            ['vidNumber', 'VID Number', new NotEmptyValidator(), new StringLengthValidator({min: 1, max: 5})],
+            ['ticketCount', 'Ticket count', new NotEmptyValidator(), new StringLengthValidator({min: 1, max: 5})]
         ];
     }
 
@@ -75,15 +81,26 @@ export default class RegistrationForm extends React.Component {
         runner = new ValidationRunner(this.rules, this.state);
         result = runner.execute();
         console.log(result);
+        if (!result.length) {
+            this.saveData();
+        }
     }
 
     /**
-     * Assign the
+     * Bind the vars from inputs to the state object
      */
     handleChange({target}) {
         this.setState({
             [target.name]: target.value
         });
+    }
+
+    /**
+     * Stringify the data and save it to the local storage
+     */
+    saveData() {
+        let registrationData = JSON.stringify(this.state);
+        localStorage.setItem("registrationData", registrationData);
     }
 
 }

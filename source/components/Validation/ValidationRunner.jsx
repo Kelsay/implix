@@ -24,6 +24,7 @@ export default class ValidationRunner {
 
             for (let validator of validators) {
                 if (!validator.validate(value)) {
+                    validator.setLabel(label);
                     errors.push(validator.getErrorMessage());
                 }
             }
