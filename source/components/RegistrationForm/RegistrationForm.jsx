@@ -61,7 +61,7 @@ export default class RegistrationForm extends React.Component {
                 <div className="wrapper">
                     <img src={logo} className="logo"/>
                     <h2 className="title-primary">Weekend promotion</h2>
-                    <h3 className="title-secondary">Promotion ends: 20.03.2014, 12:00PM</h3>
+                    <h3 className="title-secondary"><em>Promotion ends:</em> 20.03.2014, 12:00PM</h3>
                     <form>
                         <div>
                             <input type="radio" name="1_ticket"/> 1 TICKET €109

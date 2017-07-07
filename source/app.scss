@@ -11,3 +11,10 @@
 body {
   background: url(./images/bg-gradient.png) 0 0 repeat-x;
 }
+
+body,
+html,
+#app {
+  min-height: 100%;
+  height: 100%;
+}
