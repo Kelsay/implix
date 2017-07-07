@@ -1,0 +1,31 @@
+.input {
+  position: relative;
+  border-radius: 3px;
+  background: url(./images/bg-input.png) 0 0 repeat-x;
+  border: 0;
+  height: 47px;
+  display: inline-block;
+
+  .placeholder {
+    color: #999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    padding: 15px 20px;
+
+  }
+
+  input,
+  textarea {
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    width: 100%;
+    height: 47px;
+    border: 0;
+    margin: 0;
+    padding: 15px 20px;
+  }
+}

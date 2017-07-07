@@ -20,7 +20,8 @@ module.exports = {
             {test: /\.jsx$/, exclude: /node_modules/, loader: "eslint-loader", enforce: "pre"},
             {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
             {test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/},
-            {test: /\.scss$/, loaders: ['style-loader', 'css-loader', 'sass-loader']}
+            {test: /\.scss$/, loaders: ['style-loader', 'css-loader', 'sass-loader']},
+            {test: /\.(png|jpeg|ttf)$/, loader: 'url-loader'}
         ]
     },
     devServer: {

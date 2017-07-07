@@ -13,6 +13,10 @@ import NoDigitsValidator from '../Validation/NoDigitsValidator.jsx';
 import DigitsOnlyValidator from '../Validation/DigitsOnlyValidator.jsx';
 import ValueRangeValidator from '../Validation/ValueRangeValidator.jsx';
 
+// Components
+import Input from '../Inputs/Input.jsx';
+import logo from '../../images/logo.png';
+
 
 export default class RegistrationForm extends React.Component {
 
@@ -29,13 +33,16 @@ export default class RegistrationForm extends React.Component {
      */
     setupValidationRules() {
         this.rules = [
-            ['email', 'E-mail', new NotEmptyValidator(), new EmailValidator()],
-            ['password', 'Password', new NotEmptyValidator(), new PasswordValidator()],
             ['firstName', 'First name', new NotEmptyValidator(), new NoDigitsValidator()],
             ['lastName', 'Last name', new NotEmptyValidator(), new NoDigitsValidator()],
+            ['email', 'E-mail', new NotEmptyValidator(), new EmailValidator()],
+            ['password', 'Password', new NotEmptyValidator(), new PasswordValidator()],
             ['textarea1', 'Textarea 1', new NotEmptyValidator(), new StringLengthValidator({min: 1, max: 10})],
             ['textarea2', 'Textarea 2', new NotEmptyValidator(), new StringLengthValidator({min: 1, max: 20})],
-            ['vidNumber', 'VID Number', new NotEmptyValidator(), new DigitsOnlyValidator(), new StringLengthValidator({min: 1, max: 5})],
+            ['vidNumber', 'VID Number', new NotEmptyValidator(), new DigitsOnlyValidator(), new StringLengthValidator({
+                min: 1,
+                max: 5
+            })],
             ['ticketCount', 'Ticket count', new NotEmptyValidator(), new ValueRangeValidator({min: 1, max: 20})]
         ];
     }
@@ -50,28 +57,33 @@ export default class RegistrationForm extends React.Component {
     render() {
         let state = this.state;
         return (
-            <div className="registrationForm">
+            <div className="registration-form">
+                <div className="wrapper">
+                    <img src={logo} className="logo"/>
+                    <h2 className="title-primary">Weekend promotion</h2>
+                    <h3 className="title-secondary">Promotion ends: 20.03.2014, 12:00PM</h3>
+                    <form>
+                        <div>
+                            <input type="radio" name="1_ticket"/> 1 TICKET €109
+                            <input type="radio" name="5_tickets"/> 5 TICKETS €495
+                        </div>
 
-                <h2>Weekend promotion</h2>
-                <h3>Promotion ends: 20.03.2014, 12:00PM</h3>
-                <form>
-                    <input type="radio" name="1_ticket"/> 1 TICKET €109
-                    <input type="radio" name="5_tickets"/> 5 TICKETS €495
+                        <Input type="text" name="firstName" placeholder="First Name" value={state.firstName} onChange={this.handleChange}/>
+                        <Input type="text" name="lastName" placeholder="Last Name" value={state.lastName} onChange={this.handleChange}/>
 
-                    <input name="firstName" type="text" value={state.firstName} onChange={this.handleChange}/>
-                    <input name="lastName" type="text" value={state.lastName} onChange={this.handleChange}/>
+                        <Input type="textarea" placeholder="Textarea 1" name="textarea1" value={state.textarea1} onChange={this.handleChange}/>
+                        <Input type="textarea" placeholder="Textarea 2" name="textarea2" value={state.textarea2} onChange={this.handleChange}/>
 
-                    <textarea name="textarea1" value={state.textarea1} onChange={this.handleChange}></textarea>
-                    <textarea name="textarea2" value={state.textarea2} onChange={this.handleChange}></textarea>
+                        <Input type="text" name="email" placeholder="E-mail" value={state.email} onChange={this.handleChange}/>
+                        <Input type="password" name="password" placeholder="Password" value={state.password} onChange={this.handleChange}/>
 
-                    <input name="email" type="text" value={state.email} onChange={this.handleChange}/>
-                    <input name="password" type="password" value={state.password} onChange={this.handleChange}/>
+                        <Input type="text" name="vidNumber" placeholder="VID Number" value={state.vidNumber} onChange={this.handleChange}/>
+                        <Input type="text" name="ticketCount" placeholder="1" value={state.ticketCount} onChange={this.handleChange}/>
+                        <div className="ticketsNumber"> x Number of tickets</div>
 
-                    <input name="vidNumber" type="text" value={state.vidNumber}/>
-                    <input name="ticketCount" type="text" value={state.ticketCount}/>
-
-                    <button onClick={this.handleSubmit}>Register</button>
-                </form>
+                        <button className="register-button" onClick={this.handleSubmit}>Register</button>
+                    </form>
+                </div>
             </div>
         );
     }
