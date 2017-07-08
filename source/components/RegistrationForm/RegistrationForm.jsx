@@ -63,9 +63,14 @@ export default class RegistrationForm extends React.Component {
                     <h2 className="title-primary">Weekend promotion</h2>
                     <h3 className="title-secondary"><em>Promotion ends:</em> 20.03.2014, 12:00PM</h3>
                     <form>
-                        <div>
-                            <input type="radio" name="1_ticket"/> 1 TICKET €109
-                            <input type="radio" name="5_tickets"/> 5 TICKETS €495
+
+                        <div className="switch offer-type">
+                            <label>
+                                <input type="radio" name="tickets"/> <span> 1 TICKET €109 </span>
+                            </label>
+                            <label>
+                                <input type="radio" name="tickets"/> <span> 5 TICKETS €495 </span>
+                            </label>
                         </div>
 
                         <Input type="text" name="firstName" placeholder="First Name" value={state.firstName} onChange={this.handleChange}/>
@@ -77,9 +82,11 @@ export default class RegistrationForm extends React.Component {
                         <Input type="text" name="email" placeholder="E-mail" value={state.email} onChange={this.handleChange}/>
                         <Input type="password" name="password" placeholder="Password" value={state.password} onChange={this.handleChange}/>
 
-                        <Input type="text" name="vidNumber" placeholder="VID Number" value={state.vidNumber} onChange={this.handleChange}/>
-                        <Input type="text" name="ticketCount" placeholder="1" value={state.ticketCount} onChange={this.handleChange}/>
-                        <div className="ticketsNumber"> x Number of tickets</div>
+                        <div className="bottom-panel">
+                            <Input type="text" name="vidNumber" placeholder="VID Number" value={state.vidNumber} onChange={this.handleChange} className="vid-number"/>
+                            <Input type="text" name="ticketCount" placeholder="1" value={state.ticketCount} onChange={this.handleChange} className="ticket-count"/>
+                            <span className="ticket-count-label"> x Number of tickets</span>
+                        </div>
 
                         <button className="register-button" onClick={this.handleSubmit}>Register</button>
                     </form>

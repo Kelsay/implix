@@ -35,16 +35,52 @@
     font-family: 'PT Sans', sans-serif;
     font-weight: 700;
     margin-bottom: 110px;
-    
+
     em {
       text-decoration: underline;
     }
   }
 
+  .bottom-panel {
+    width: 375px;
+    margin: 140px auto 20px auto;
+    text-align: center;
+  }
+
+  // Switch for 1 - 5 offers
+  .offer-type {
+    margin: 0 auto 48px auto;
+    text-align: center;
+  }
+
+  .switch {
+    label {
+      vertical-align: middle;
+    }
+    span {
+      color: #ff7a00;
+      font-size: 33px;
+      margin: 3px 0 0 0;
+    }
+  }
+
+
   .input {
     width: 375px;
     margin: 6px;
+    text-align: left;
   }
+
+  .input.vid-number {
+    width: 152px;
+    background: #fff;
+  }
+
+  .input.ticket-count {
+    width: 48px;
+    background: #fff;
+  }
+
 
   .register-button {
     background: #1b3647;

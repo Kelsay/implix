@@ -3,8 +3,9 @@ import React from 'react';
 export default class Input extends React.Component {
 
     render() {
-        const {type, placeholder, ...other} = this.props;
-        let label, input = null;
+        const {type, placeholder, className = '', ...other} = this.props; // Destructure properties
+        let label, input = null,
+            combinedClassName = 'input ' + className;
 
         // Insert placeholder if there is no value
         if (this.props.value === null || this.props.value === '') {
@@ -19,7 +20,7 @@ export default class Input extends React.Component {
         }
 
         return (
-            <div className="input">
+            <div className={combinedClassName}>
                 {label}
                 {input}
                 {this.props.children}
