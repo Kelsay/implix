@@ -17,6 +17,8 @@ import ValueRangeValidator from '../Validation/ValueRangeValidator.jsx';
 import Input from '../Inputs/Input.jsx';
 import logo from '../../images/logo.png';
 
+// Publish/Subscribe library
+import PubSub from 'pubsub-js';
 
 export default class RegistrationForm extends React.Component {
 
@@ -39,10 +41,7 @@ export default class RegistrationForm extends React.Component {
             ['password', 'Password', new NotEmptyValidator(), new PasswordValidator()],
             ['textarea1', 'Textarea 1', new NotEmptyValidator(), new StringLengthValidator({min: 1, max: 10})],
             ['textarea2', 'Textarea 2', new NotEmptyValidator(), new StringLengthValidator({min: 1, max: 20})],
-            ['vidNumber', 'VID Number', new NotEmptyValidator(), new DigitsOnlyValidator(), new StringLengthValidator({
-                min: 1,
-                max: 5
-            })],
+            ['vidNumber', 'VID Number', new NotEmptyValidator(), new DigitsOnlyValidator(), new StringLengthValidator({min: 1, max: 5})],
             ['ticketCount', 'Ticket count', new NotEmptyValidator(), new ValueRangeValidator({min: 1, max: 20})]
         ];
     }
@@ -104,11 +103,22 @@ export default class RegistrationForm extends React.Component {
         let runner, result;
         runner = new ValidationRunner(this.rules, this.state);
         result = runner.execute();
-        console.log(result);
         if (!result.length) {
             this.saveData();
+        } else {
+            this.displayErrors(result);
         }
     }
+
+    /**
+     * Publish the list of errors to the registered subscribers
+     */
+
+    displayErrors(errors) {
+        PubSub.publish('MessagesUpdate', errors);
+        console.log('Publishing', errors);
+    }
+
 
     /**
      * Bind the vars from inputs to the state object
