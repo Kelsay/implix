@@ -1,0 +1,17 @@
+.messages {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  .message {
+    background: #eee;
+    color: #1b3647;
+    padding: 6px;
+    min-height: 40px;
+    margin: 4px;
+    display: inline-block;
+    float: right;
+    clear: both;
+    max-width: 200px;
+    border-radius: 3px;
+  }
+}
