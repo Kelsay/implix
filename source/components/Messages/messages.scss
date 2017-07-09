@@ -3,7 +3,7 @@
   right: 10px;
   bottom: 10px;
   .message {
-    background: #eee;
+    background: #fcf4ef;
     color: #1b3647;
     padding: 6px;
     min-height: 40px;
@@ -14,4 +14,23 @@
     max-width: 200px;
     border-radius: 3px;
   }
+
+  .message-enter {
+    opacity: 0.01;
+  }
+
+  .message-enter.message-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+
+  .message-leave {
+    opacity: 1;
+  }
+
+  .message-leave.message-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }
+
 }

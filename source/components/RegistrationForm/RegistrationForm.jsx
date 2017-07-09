@@ -116,7 +116,6 @@ export default class RegistrationForm extends React.Component {
 
     displayErrors(errors) {
         PubSub.publish('MessagesUpdate', errors);
-        console.log('Publishing', errors);
     }
 
 

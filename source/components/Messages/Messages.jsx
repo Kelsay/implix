@@ -1,5 +1,7 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import PubSub from 'pubsub-js';
+import Message from './Message.jsx';
 
 export default class Messages extends React.Component {
 
@@ -27,16 +29,12 @@ export default class Messages extends React.Component {
         this.setState({messages: newMessages});
     }
 
-    hideMessageBox(id) {
-        console.log(this.ref[id]);
-    }
-
     render() {
         let messages = [];
         for (let id in this.state.messages) {
             let text = this.state.messages[id];
             if (text !== null) {
-                messages.push(<li ref={id} key={id} className="message">{text}</li>);
+                messages.push(<Message text={text} key={id}/>);
                 if (!this.timeouts[id]) {
                     this.timeouts[id] = setTimeout(this.removeMessage.bind(this, id), 3000);
                 }
@@ -45,9 +43,12 @@ export default class Messages extends React.Component {
 
         return (
             <div className="messages">
-                <ul>
+                <ReactCSSTransitionGroup
+                    transitionName="message"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}>
                     {messages}
-                </ul>
+                </ReactCSSTransitionGroup>
             </div>
         );
     }
