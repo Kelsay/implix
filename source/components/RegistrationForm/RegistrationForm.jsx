@@ -104,9 +104,9 @@ export default class RegistrationForm extends React.Component {
         runner = new ValidationRunner(this.rules, this.state);
         result = runner.execute();
         if (!result.length) {
-            this.saveData();
+            this.processValidData();
         } else {
-            this.displayErrors(result);
+            this.displayMessages(result);
         }
     }
 
@@ -114,8 +114,8 @@ export default class RegistrationForm extends React.Component {
      * Publish the list of errors to the registered subscribers
      */
 
-    displayErrors(errors) {
-        PubSub.publish('MessagesUpdate', errors);
+    displayMessages(messages) {
+        PubSub.publish('MessagesUpdate', messages);
     }
 
 
@@ -130,10 +130,12 @@ export default class RegistrationForm extends React.Component {
 
     /**
      * Stringify the data and save it to the local storage
+     * Display the message
      */
-    saveData() {
+    processValidData() {
         let registrationData = JSON.stringify(this.state);
         localStorage.setItem("registrationData", registrationData);
+        this.displayMessages(['Form data valid']);
     }
 
 }

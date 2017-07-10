@@ -34,7 +34,7 @@ export default class Messages extends React.Component {
         for (let id in this.state.messages) {
             let text = this.state.messages[id];
             if (text !== null) {
-                messages.push(<Message text={text} key={id}/>);
+                messages.unshift(<Message text={text} key={id}/>);
                 if (!this.timeouts[id]) {
                     this.timeouts[id] = setTimeout(this.removeMessage.bind(this, id), 3000);
                 }
